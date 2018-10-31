@@ -15,19 +15,27 @@ namespace GrandCircusLab14
         }
 
         public static void SheepCount(Sheep sheep)
-        {//takes an input sheep, counts to 2, 
-         //clones it, counts the clone to 3, 
-         //then resets the original sheep and counts once
+        {//takes an input sheep, counts to an input, 
+         //clones it, counts the clone to another input, 
+         //then resets the original sheep and counts to a final input
             Console.WriteLine("Counting sheep. . .");
             CountUtil.Count(sheep, Counter());
+
             Console.WriteLine("Cloning sheep. . .");
-            Sheep dolly = (Sheep)sheep.Clone();
-            Sheep.NameSheep(dolly,GetName());
-            dolly.ResetCount();
+            Sheep dolly = Cloner(sheep);
             CountUtil.Count(dolly, Counter());
+
             Console.WriteLine("Counting sheep. . .");
             sheep.ResetCount();
             CountUtil.Count(sheep, Counter());
+        }
+
+        public static Sheep Cloner(Sheep sheep)
+        {//clones a sheep from an input sheep, renames it, and resets the count to 0
+            Sheep dolly = (Sheep)sheep.Clone();
+            Sheep.NameSheep(dolly, GetName());
+            dolly.ResetCount();
+            return dolly;
         }
 
         public static int Counter()
